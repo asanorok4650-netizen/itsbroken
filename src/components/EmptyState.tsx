@@ -1,30 +1,28 @@
-import type { GameItem } from '../types';
-
-type GameCardProps = {
-  item: GameItem;
-  onSelectGame: () => void;
+type EmptyStateProps = {
+  title?: string;
+  description?: string;
+  buttonLabel?: string;
+  buttonId?: string;
+  onOpenFile?: () => void;
 };
 
-const formatSize = (bytes: number): string => {
-  if (!Number.isFinite(bytes)) {
-    return 'サイズ不明';
-  }
-
-  return bytes < 1048576
-    ? `${Math.max(1, Math.round(bytes / 1024))} KB`
-    : `${(bytes / 1048576).toFixed(1)} MB`;
-};
-
-export default function GameCard({ item, onSelectGame }: GameCardProps) {
+export default function EmptyState({
+  title = '表示できるゲームがありません',
+  description = 'ファイルを追加するか、検出されたワールドがない場合は別の名前で検索してください。',
+  buttonLabel = 'ファイルを開く',
+  buttonId,
+  onOpenFile,
+}: EmptyStateProps) {
   return (
-    <article className="game-card" onClick={onSelectGame}>
-      <div className="game-thumb">▧</div>
-      <div className="game-info">
-        <strong>{item.name}</strong>
-        <small>
-          {item.format.toUpperCase()} • {formatSize(item.size)}
-        </small>
-      </div>
-    </article>
+    <div className="empty-card" id={buttonId ? 'upload-panel' : undefined}>
+      <div className="empty-icon">▧</div>
+      <strong>{title}</strong>
+      <span>{description}</span>
+      {onOpenFile && (
+        <button type="button" className="open-file-button" id={buttonId} onClick={onOpenFile}>
+          {buttonLabel}
+        </button>
+      )}
+    </div>
   );
 }
