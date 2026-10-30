@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>RBXL Player</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./src/navigation.js"></script>
+  <script defer src="./src/library.js"></script>
+  <script defer src="./src/main.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home" aria-label="RBXL Player ホーム"><span class="brand-mark">R</span><span>RBXL Player</span></a>
+      <nav class="main-nav" aria-label="メインメニュー">
+        <button class="nav-item active" data-page="home"><span class="nav-icon">⌂</span>ホーム</button>
+        <button class="nav-item" data-page="discover"><span class="nav-icon">◈</span>探索</button>
+        <button class="nav-item" data-page="friends"><span class="nav-icon">♧</span>フレンド</button>
+        <button class="nav-item" data-page="recent"><span class="nav-icon">◷</span>最近プレイしたゲーム</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-note">ローカルのワールドを<br>ブラウザで楽しもう。</div><div class="profile-mini"><div class="avatar">G</div><div><strong>ゲスト</strong><small>ローカルモード</small></div></div></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="メニューを開く">☰</button><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="ゲームを検索..." autocomplete="off"></label><div class="top-actions"><button class="icon-button" title="通知" aria-label="通知">♧</button><div class="avatar top-avatar">G</div></div></header>
+      <section class="page-content">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR WORLDS, YOUR WAY</p><h1 id="page-title">ホーム</h1><p class="subheading" id="page-subtitle">お気に入りのワールドに戻ろう。</p></div><button class="primary-button" id="open-file-button"><span>＋</span> ゲームを開く</button><input id="file-input" type="file" accept=".rbxl,.rbxlx" hidden></div>
+        <section class="section-block" id="recent-section"><div class="section-heading"><div><h2>最近プレイしたゲーム</h2><p>最近開いたワールドがここに表示されます。</p></div><button class="text-button" data-page="recent">すべて表示 →</button></div><div class="game-grid" id="recent-games"><div class="empty-card"><div class="empty-icon">▧</div><strong>まだゲームがありません</strong><span>RBXL / RBXLX ファイルを開くと、ここに表示されます。</span><button class="secondary-button" id="empty-open-button">ファイルを選択</button></div></div></section>
+        <section class="section-block" id="library-section"><div class="section-heading"><div><h2>ゲームライブラリ</h2><p>このブラウザで開いたワールド。</p></div></div><button class="upload-panel" id="upload-panel"><span class="upload-icon">↥</span><span class="upload-copy"><strong>ワールドを追加</strong><small>.rbxl または .rbxlx ファイルを選択</small></span><span class="upload-arrow">→</span></button></section>
+        <section class="section-block hidden" id="friends-section"><div class="section-heading"><div><h2>フレンド</h2><p>フレンド機能は今後の開発で追加します。</p></div></div><div class="placeholder-panel"><div class="empty-icon">♧</div><strong>フレンド機能は準備中です</strong><span>オンライン状態や招待機能を、マルチプレイ機能とあわせて実装する予定です。</span></div></section>
+        <section class="section-block hidden" id="discover-section"><div class="section-heading"><div><h2>探索</h2><p>ゲームの検索・発見機能は今後追加します。</p></div></div><div class="placeholder-panel"><div class="empty-icon">◈</div><strong>探索ページは準備中です</strong><span>公開ワールドや共有されたワールドを探せるようにする予定です。</span></div></section>
+        <p class="status-message" id="status-message" role="status" aria-live="polite"></p><footer>RBXL Player <span>•</span> Browser-based world player</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
