@@ -1,36 +1,27 @@
-type TopbarProps = {
-  searchQuery: string;
-  onSearchChange: (value: string) => void;
-  onToggleSidebar: () => void;
+import type { GameItem } from '../types';
+
+type GameCardProps = {
+  item: GameItem;
+  onSelectGame: () => void;
 };
 
-export default function Topbar({
-  searchQuery,
-  onSearchChange,
-  onToggleSidebar,
-}: TopbarProps) {
-  return (
-    <header className="topbar">
-      <button
-        type="button"
-        className="mobile-menu"
-        id="mobile-menu"
-        aria-label="メニューを開く"
-        onClick={onToggleSidebar}
-      >
-        ☰
-      </button>
+const formatSize = (bytes: number): string => {
+  if (!Number.isFinite(bytes)) return 'サイズ不明';
+  return bytes < 1048576
+    ? `${Math.max(1, Math.round(bytes / 1024))} KB`
+    : `${(bytes / 1048576).toFixed(1)} MB`;
+};
 
-      <label className="search-box" htmlFor="search-input">
-        <span>⌕</span>
-        <input
-          id="search-input"
-          type="search"
-          value={searchQuery}
-          placeholder="ワールドを検索"
-          onChange={(event) => onSearchChange(event.target.value)}
-        />
-      </label>
-    </header>
+export default function GameCard({ item, onSelectGame }: GameCardProps) {
+  return (
+    <article className="game-card" onClick={onSelectGame}>
+      <div className="game-thumb">▧</div>
+      <div className="game-info">
+        <strong>{item.name}</strong>
+        <small>
+          {item.format.toUpperCase()} • {formatSize(item.size)}
+        </small>
+      </div>
+    </article>
   );
 }
